@@ -42,9 +42,7 @@ public class UsersController {
 	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public @ResponseBody Map<String,Object> getAll(Users users){
 		Map<String,Object> map = new HashMap<String,Object>();
-	
 			List<Users> list = userServices.list();
-			
 			if (list != null){
 				map.put("status","200");
 				map.put("message","Data found");

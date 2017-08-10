@@ -9,17 +9,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <body onload="load();">
-
 		<input type="hidden" id="user_id">
 		Name: <input type="text" id="name" required="required" name="user_name"><br>
 		Email: <input type="email" id="email" required="required" name="email"><br>
+		phone: <input type="text" id="phone" required="required" name="phone"><br>
+		password: <input type="password" id="password" required="required" name="password"><br>
 		<button onclick="submit();">Submit</button>
-
-
 
 		<table id="table" border=1>
 			<tr> <th> Name </th> <th> Email </th> <th> Edit </th> <th> Delete </th> </tr>
-
 		</table>
 
 

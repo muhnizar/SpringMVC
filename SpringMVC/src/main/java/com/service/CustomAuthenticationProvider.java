@@ -1,5 +1,7 @@
 package com.service;
 
+import com.models.model.Users;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -7,18 +9,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CustomAuthenticationProvider implements AuthenticationProvider {
+    @Autowired
+    UsersService usersService;
+
     public Authentication authenticate(Authentication authentication)
+
             throws AuthenticationException {
         try {
             boolean valid = false;
             String username = authentication.getName();
             String password = authentication.getCredentials().toString();
-
+            Users user = usersService.getUserByUserName(username);
 //            Date dateIndonesia = null;
 //            try {
 //                dateIndonesia = DateUtil.parseToDate(dateOfBirth, CONSTANT_DATE.DATE_FORMAT_VERSION1);
@@ -64,7 +71,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                             return "ROLE_USER";
                         }
                     });
-            return new UsernamePasswordAuthenticationToken(username, password, roles);
+            return new UsernamePasswordAuthenticationToken(user.getUser_id(), password, roles);
         } catch (Exception e) {
             throw new BadCredentialsException(e.getMessage());
         }

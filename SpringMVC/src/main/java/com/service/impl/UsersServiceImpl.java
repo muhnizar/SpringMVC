@@ -19,13 +19,15 @@ public class UsersServiceImpl implements UsersService{
 	}
 
 	public List<Users> list() {
-		// TODO Auto-generated method stub
 		return userDao.list();
 	}
 
 	public boolean delete(Users users) {
-		// TODO Auto-generated method stub
 		return userDao.delete(users);
-	}	
-	
+	}
+
+	public Users getUserByUserName(String username) {
+		return userDao.getUserByUsername(username);
+	}
+
 }
